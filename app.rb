@@ -10,7 +10,7 @@ get("/") do
 
   api_data = JSON.parse(response.body)
 
-  currencies = api_data["currencies"] # this is a hash of currencies
+  @currencies = api_data["currencies"] # this is a hash of currencies
   erb(:homepage)
 end
 
