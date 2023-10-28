@@ -17,6 +17,7 @@ get("/:from_currency") do
   api_url = "https://api.exchangerate.host/list?access_key=#{ENV["EXCHANGE_RATE_KEY"]}"
   response = HTTP.get(api_url)
   api_data = JSON.parse(response.body)
+  @currencies = api_data["currencies"]
 
   # some more code to parse the URL and render a view template
   erb(:from_currency_result)
