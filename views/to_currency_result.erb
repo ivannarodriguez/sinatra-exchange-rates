@@ -1,3 +1,5 @@
 <h1>Convert <%= @original_currency %> to <%= @destination_currency %></h1>
-<p>1 <%= @original_currency %> equals 1 <%= @destination_currency %>.</p>
-<div>Go <a href="/<%= @original_currency %>">back</a>.</div>
+<p>1 <%= @original_currency %> equals <%= @result %> <%= @destination_currency %>.</p>
+<div>
+  Go <a href="/<%= @original_currency %>">back</a>.
+</div>
