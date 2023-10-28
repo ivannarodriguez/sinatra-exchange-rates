@@ -5,11 +5,8 @@ require "json"
 
 get("/") do
   api_url = "https://api.exchangerate.host/list?access_key=#{ENV["EXCHANGE_RATE_KEY"]}"
-
   response = HTTP.get(api_url)
-
   api_data = JSON.parse(response.body)
-
   @currencies = api_data["currencies"] # this is a hash of currencies
   erb(:homepage)
 end
@@ -18,8 +15,11 @@ get("/:from_currency") do
   @original_currency = params[:from_currency]
 
   api_url = "https://api.exchangerate.host/list?access_key=#{ENV["EXCHANGE_RATE_KEY"]}"
-  
+  response = HTTP.get(api_url)
+  api_data = JSON.parse(response.body)
+
   # some more code to parse the URL and render a view template
+  erb(:from_currency_result)
 end
 
 get("/:from_currency/:to_currency") do
@@ -29,4 +29,5 @@ get("/:from_currency/:to_currency") do
   api_url = "https://api.exchangerate.host/convert?access_key=#{ENV["EXCHANGE_RATE_KEY"]}&from=#{@original_currency}&to=#{@destination_currency}&amount=1"
   
   # some more code to parse the URL and render a view template
+  erb(:to_currency_result)
 end
